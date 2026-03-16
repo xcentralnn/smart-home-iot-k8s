@@ -9,8 +9,6 @@ Simulates IoT sensors → streams telemetry through MQTT → stores
 time-series data in InfluxDB → detects anomalies using machine learning
 → visualizes metrics in Grafana.
 
-`<br>`{=html}
-
 ![GitHub
 stars](https://img.shields.io/github/stars/xcentralnn/smart-home-iot-k8s?style=social)
 ![GitHub
@@ -84,19 +82,7 @@ Features used for anomaly detection:
 
 Workflow:
 
-    Historical sensor data
-            ↓
-    Model Training
-            ↓
-    model.joblib
-            ↓
-    Anomaly Detection Service
-            ↓
-    anomaly_score + anomaly_flag
-            ↓
-    InfluxDB
-            ↓
-    Grafana
+    Historical sensor data -> Model Training -> model.joblib -> Anomaly Detection Service -> anomaly_score + anomaly_flag -> InfluxDB -> Grafana
 
 Example anomaly output:
 
@@ -112,9 +98,9 @@ abnormal sensor behavior in real time.
 
 ------------------------------------------------------------------------
 
-# Quick Start
+# 🚀 Quick Start
 
-## 1. Clone repository
+# 1. Clone repository
 
 ``` bash
 git clone https://github.com/xcentralnn/smart-home-iot-k8s.git
@@ -240,6 +226,8 @@ data.
 ------------------------------------------------------------------------
 
 # Demo
+
+Will be updated soon.
 
 ------------------------------------------------------------------------
 
