@@ -1,4 +1,3 @@
-::: {align="center"}
 # Smart Home IoT AI Monitoring on Kubernetes
 
 <img src="docs/architecture.png" width="900"/>
