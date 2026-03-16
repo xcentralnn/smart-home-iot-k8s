@@ -21,29 +21,6 @@ Simulates IoT sensors → streams telemetry through MQTT → stores time-series 
 
 ---
 
-<div align="center">
-
-# Smart Home IoT Monitoring on Kubernetes
-
-<img src="docs/architecture.png" width="900"/>
-
-Cloud-native IoT telemetry pipeline running on Kubernetes.
-
-Simulated sensors → MQTT messaging → time-series storage → visualization in Grafana.
-
-<br>
-
-![GitHub stars](https://img.shields.io/github/stars/xcentralnn/smart-home-iot-k8s?style=social)
-![GitHub forks](https://img.shields.io/github/forks/xcentralnn/smart-home-iot-k8s?style=social)
-![License](https://img.shields.io/badge/license-MIT-green)
-![Kubernetes](https://img.shields.io/badge/Kubernetes-Orchestrated-blue?logo=kubernetes)
-![Docker](https://img.shields.io/badge/Docker-Containerized-blue?logo=docker)
-![Python](https://img.shields.io/badge/Python-3.10+-yellow?logo=python)
-
-</div>
-
----
-
 # Overview
 
 This project demonstrates a **cloud-native IoT monitoring platform deployed on Kubernetes**.
@@ -56,24 +33,6 @@ Telemetry pipeline:
 ```
 Simulator → MQTT → Ingestion → InfluxDB → Grafana
 ```
-
----
-
-# Architecture
-
-<div align="center">
-
-<img src="docs/architecture.png" width="850"/>
-
-</div>
-
-Data flows through the following stages:
-
-1. IoT simulator generates sensor telemetry  
-2. MQTT broker receives device messages  
-3. Ingestion service processes incoming events  
-4. Metrics are stored in InfluxDB  
-5. Grafana dashboards visualize telemetry  
 
 ---
 
