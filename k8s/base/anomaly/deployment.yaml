@@ -2,17 +2,49 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: anomaly
+  namespace: smart-home
 spec:
   replicas: 1
   revisionHistoryLimit: 2
+
   selector:
     matchLabels:
       app: anomaly
+
   template:
     metadata:
       labels:
         app: anomaly
+
     spec:
       containers:
       - name: anomaly
-        image: centraln/iot-anomaly:156ad13
+        image: centraln/iot-anomaly:04a16e7
+        imagePullPolicy: Always
+
+        env:
+        - name: MQTT_HOST
+          value: mqtt
+
+        - name: MQTT_BROKER_PORT
+          value: "1883"
+
+        - name: INFLUX_URL
+          value: http://influxdb:8086
+
+        - name: INFLUX_TOKEN
+          value: xW3RESD2
+
+        - name: INFLUX_ORG
+          value: iot
+
+        - name: INFLUX_BUCKET
+          value: sensors
+
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "500m"
+            memory: "512Mi"

@@ -9,6 +9,7 @@ resources:
 - influxdb/deployment.yaml
 - influxdb/service.yaml
 - ingestion/deployment.yaml
+- anomaly/deployment.yaml
 - grafana/deployment.yaml
 - grafana/service.yaml
 

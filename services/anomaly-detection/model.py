@@ -1,21 +1,24 @@
-from sklearn.ensemble import IsolationForest
-import numpy as np
+import joblib
+import pandas as pd
+import os
 
-model = IsolationForest(contamination=0.02)
+MODEL_PATH = os.getenv("MODEL_PATH", "model.joblib")
 
-# train model with normal data
-def train():
+print("Loading model:", MODEL_PATH)
 
-    data = np.random.normal(
-        loc=[25,60],
-        scale=[3,10],
-        size=(200,2)
-    )
-
-    model.fit(data)
+model = joblib.load(MODEL_PATH)
 
 def detect(sample):
 
-    result = model.predict([sample])
+    sample = pd.DataFrame(
+        [sample],
+        columns=["temperature", "humidity"]
+    )
 
-    return result
+    score = model.decision_function(sample)[0]
+    label = model.predict(sample)[0]
+
+    return {
+        "score": float(score),
+        "anomaly": int(label)
+    }
