@@ -1,0 +1,16 @@
+namespace: smart-home
+resources:
+- mqtt/deployment.yaml
+- mqtt/service.yaml
+- influxdb/deployment.yaml
+- influxdb/service.yaml
+- ingestion/deployment.yaml
+- anomaly/deployment.yaml
+- grafana/deployment.yaml
+- grafana/service.yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+labels:
+- includeSelectors: true
+  pairs:
+    project: smart-home-iot
