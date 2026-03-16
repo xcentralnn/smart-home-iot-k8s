@@ -4,6 +4,7 @@ metadata:
   name: influxdb
 spec:
   replicas: 1
+  revisionHistoryLimit: 2
   selector:
     matchLabels:
       app: influxdb
@@ -17,3 +18,16 @@ spec:
         image: influxdb:2
         ports:
         - containerPort: 8086
+        env:
+        - name: DOCKER_INFLUXDB_INIT_MODE
+          value: setup
+        - name: DOCKER_INFLUXDB_INIT_USERNAME
+          value: admin
+        - name: DOCKER_INFLUXDB_INIT_PASSWORD
+          value: admin@2026
+        - name: DOCKER_INFLUXDB_INIT_ORG
+          value: iot
+        - name: DOCKER_INFLUXDB_INIT_BUCKET
+          value: sensors
+        - name: DOCKER_INFLUXDB_INIT_ADMIN_TOKEN
+          value: xW3RESD2

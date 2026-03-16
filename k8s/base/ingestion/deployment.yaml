@@ -4,6 +4,7 @@ metadata:
   name: ingestion
 spec:
   replicas: 1
+  revisionHistoryLimit: 2
   selector:
     matchLabels:
       app: ingestion
@@ -14,4 +15,4 @@ spec:
     spec:
       containers:
       - name: ingestion
-        image: centraln/iot-ingestion:1.0
+        image: centraln/iot-ingestion:156ad13
