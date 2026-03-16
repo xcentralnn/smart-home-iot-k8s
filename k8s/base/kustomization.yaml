@@ -1,16 +1,32 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
 namespace: smart-home
+
 resources:
 - mqtt/deployment.yaml
 - mqtt/service.yaml
 - influxdb/deployment.yaml
 - influxdb/service.yaml
 - ingestion/deployment.yaml
-- anomaly/deployment.yaml
 - grafana/deployment.yaml
 - grafana/service.yaml
-apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
+
 labels:
 - includeSelectors: true
   pairs:
     project: smart-home-iot
+
+configMapGenerator:
+- files:
+  - grafana/datasource.yaml
+  name: grafana-datasources
+- files:
+  - grafana/dashboard-provider.yaml
+  name: grafana-dashboard-provider
+- files:
+  - grafana/dashboard.json
+  name: grafana-dashboard
+
+generatorOptions:
+  disableNameSuffixHash: true

@@ -4,6 +4,7 @@ metadata:
   name: anomaly
 spec:
   replicas: 1
+  revisionHistoryLimit: 2
   selector:
     matchLabels:
       app: anomaly
@@ -14,4 +15,4 @@ spec:
     spec:
       containers:
       - name: anomaly
-        image: centraln/iot-anomaly:1.1
+        image: centraln/iot-anomaly:156ad13

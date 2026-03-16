@@ -6,7 +6,7 @@ BROKER="mqtt"
 
 bucket="sensors"
 org="iot"
-token="my-token"
+token="xW3RESD2"
 
 influx = InfluxDBClient(
     url="http://influxdb:8086",
