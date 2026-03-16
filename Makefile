@@ -1,5 +1,5 @@
 REGISTRY=centraln
-VERSION=$(shell git rev-parse --short HEAD) #VERSION=156ad13
+VERSION=$(shell git rev-parse --short HEAD) #VERSION=04a16e7
 
 build-ingestion:
 	docker build -t $(REGISTRY)/iot-ingestion:$(VERSION) services/ingestion-service

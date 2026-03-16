@@ -1,2 +1,6 @@
-numpy
 scikit-learn
+numpy
+pandas
+joblib
+influxdb-client
+paho-mqtt
