@@ -37,3 +37,8 @@ Thumbs.db
 
 # Drawio autosave
 *.autosave.drawio
+
+#train data local
+model.joblib
+__pycache__/
+*.pyc

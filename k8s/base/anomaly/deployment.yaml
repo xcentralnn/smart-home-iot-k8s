@@ -2,44 +2,58 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: anomaly
-  namespace: smart-home
 spec:
   replicas: 1
   revisionHistoryLimit: 2
-
   selector:
     matchLabels:
       app: anomaly
-
   template:
     metadata:
       labels:
         app: anomaly
-
     spec:
+      volumes:
+        - name: model-storage
+          persistentVolumeClaim:
+            claimName: model-pvc
+      initContainers:
+      - name: wait-for-model
+        image: busybox
+        command:
+          - sh
+          - -c
+          - |
+            echo "Waiting for model..."
+            while [ ! -f /models/model.joblib ]; do
+              sleep 5
+            done
+            echo "Model found, starting app"
+        volumeMounts:
+        - name: model-storage
+          mountPath: /models
       containers:
       - name: anomaly
-        image: centraln/iot-anomaly:04a16e7
+        image: centraln/iot-anomaly:46a18e7
         imagePullPolicy: Always
-
+        volumeMounts:
+        - name: model-storage
+          mountPath: /models
         env:
         - name: MQTT_HOST
           value: mqtt
-
         - name: MQTT_BROKER_PORT
           value: "1883"
-
         - name: INFLUX_URL
           value: http://influxdb:8086
-
         - name: INFLUX_TOKEN
           value: xW3RESD2
-
         - name: INFLUX_ORG
           value: iot
-
         - name: INFLUX_BUCKET
           value: sensors
+        - name: MODEL_PATH
+          value: /models/model.joblib
 
         resources:
           requests:

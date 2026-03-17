@@ -10,6 +10,9 @@ resources:
 - influxdb/service.yaml
 - ingestion/deployment.yaml
 - anomaly/deployment.yaml
+- anomaly/pv.yaml
+- anomaly/pvc.yaml
+- anomaly/cronjob-train.yaml
 - grafana/deployment.yaml
 - grafana/service.yaml
 

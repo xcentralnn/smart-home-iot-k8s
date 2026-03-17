@@ -1,0 +1,39 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: train-model
+spec:
+  schedule: "0 0 * * *"
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 2
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+          - name: trainer
+            image: centraln/iot-anomaly:46a18e7
+            command: ["python", "train.py"]
+
+            env:
+              - name: INFLUX_URL
+                value: http://influxdb:8086
+              - name: INFLUX_TOKEN
+                value: xW3RESD2
+              - name: INFLUX_ORG
+                value: iot
+              - name: INFLUX_BUCKET
+                value: sensors
+              - name: MODEL_PATH
+                value: /models/model.joblib
+
+            volumeMounts:
+              - name: model-storage
+                mountPath: /models
+
+          volumes:
+            - name: model-storage
+              persistentVolumeClaim:
+                claimName: model-pvc
