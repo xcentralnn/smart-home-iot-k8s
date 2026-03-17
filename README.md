@@ -1,6 +1,6 @@
 # Smart Home IoT AI Monitoring on Kubernetes
 
-<img src="docs/architecture.png" width="900"/>
+<img src="docs/architecture.png" width="1100"/>
 
 A cloud-native IoT monitoring platform powered by **AI/ML and
 Kubernetes**.
@@ -28,7 +28,7 @@ Learning](https://img.shields.io/badge/ML-IsolationForest-green)
 This project demonstrates a **cloud-native IoT monitoring platform
 deployed on Kubernetes with machine learning anomaly detection**.
 
-The system simulates IoT sensors that publish telemetry through MQTT.\
+The system simulates IoT sensors that publish telemetry through MQTT.
 Data is processed by microservices, stored in a time-series database,
 analyzed using a machine learning model, and visualized in Grafana
 dashboards.
@@ -65,7 +65,7 @@ Telemetry pipeline:
   **Grafana**                         Visualization dashboard for
                                       telemetry and anomaly metrics
   -----------------------------------------------------------------------
-<img src="docs/dashboard.png" width="900"/>
+<img src="docs/dashboard.png" width="1100"/>
 
 # Machine Learning
 
@@ -225,38 +225,41 @@ data.
 
 ------------------------------------------------------------------------
 
-# Demo
+# 6. Demo
 
 Will be updated soon.
 
 ------------------------------------------------------------------------
 
-# Data Pipeline
+# 7. Addons application
+## Headlamp dashboard - for viewing k8s resources
 
-    IoT Simulator
-          ↓
-    MQTT Broker
-          ↓
-    Ingestion Service
-          ↓
-    InfluxDB
-          ↓
-    ML Anomaly Detection
-          ↓
-    Grafana Dashboard
+<img src="docs/headlamp-dashboard.png" width="1100"/>
 
-------------------------------------------------------------------------
+### Access the web-UI 
+
+``` bash
+kubectl port-forward -n headlamp svc/headlamp 8080:80
+```
+
+### Get the token to access admin page
+
+``` bash
+ kubectl -n headlamp create serviceaccount headlamp-admi
+ kubectl create clusterrolebinding headlamp-admin --serviceaccount=headlamp:headlamp-admin --clusterrole=cluster-admin
+ kubectl create token headlamp-admin -n headlamp
+```
 
 # Future Improvements
 
 Potential extensions:
 
--   multi-device IoT simulation\
--   autoscaling ingestion with **KEDA**\
--   GitOps deployment using **ArgoCD**\
--   CI/CD pipelines for container builds\
--   Prometheus monitoring integration\
--   ML model retraining pipeline\
+-   multi-device IoT simulation
+-   autoscaling ingestion with **KEDA**
+-   GitOps deployment using **ArgoCD**
+-   CI/CD pipelines for container builds
+-   Prometheus monitoring integration
+-   ML model retraining pipeline
 -   Edge AI inference for IoT devices
 
 ------------------------------------------------------------------------
