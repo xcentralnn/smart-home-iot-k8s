@@ -9,6 +9,8 @@ INFLUX_TOKEN = os.getenv("INFLUX_TOKEN", "xW3RESD2")
 ORG = os.getenv("INFLUX_ORG", "iot")
 BUCKET = os.getenv("INFLUX_BUCKET", "sensors")
 
+MODEL_PATH = os.getenv("MODEL_PATH", "/models/model.joblib")
+
 print("Connecting to InfluxDB")
 
 client = InfluxDBClient(
@@ -33,7 +35,6 @@ if isinstance(tables, list):
 else:
     df = tables
 
-# Keep only the ML features
 data = df[["temperature", "humidity"]].dropna()
 
 print("Training IsolationForest")
@@ -45,6 +46,9 @@ model = IsolationForest(
 
 model.fit(data)
 
-joblib.dump(model, "model.joblib")
+# ensure directory exists
+os.makedirs(os.path.dirname(MODEL_PATH), exist_ok=True)
 
-print("Model saved → model.joblib")
+joblib.dump(model, MODEL_PATH)
+
+print(f"Model saved → {MODEL_PATH}")
