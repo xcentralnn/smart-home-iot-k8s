@@ -17,6 +17,7 @@ dist/
 
 # Logs
 *.log
+.kiro/
 
 # IDE
 .vscode/
@@ -42,3 +43,6 @@ Thumbs.db
 model.joblib
 __pycache__/
 *.pyc
+docs/development-roadmap.md
+docs/quick_start.md
+docs/project-documentation.md
