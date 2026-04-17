@@ -46,3 +46,6 @@ __pycache__/
 docs/development-roadmap.md
 docs/quick_start.md
 docs/project-documentation.md
+
+# demo folder
+demo/

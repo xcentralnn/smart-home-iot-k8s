@@ -1,4 +1,4 @@
-# 🎯 Hướng Dẫn Demo Cho Giảng Viên
+# Hướng Dẫn Demo Cho Giảng Viên
 
 ## Chuẩn Bị Trước Demo
 
